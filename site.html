@@ -823,6 +823,10 @@
         <label for="lf-message">What do you need edited?</label>
         <textarea id="lf-message" name="message" rows="4" placeholder="Tell me about your channel, the format, and any deadlines." required></textarea>
       </div>
+      <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+        <label for="lf-website">Leave this empty</label>
+        <input type="text" id="lf-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
       <button type="submit" class="btn btn-solid">Send it over</button>
       <p class="form-note" id="lf-status" aria-live="polite"></p>
     </form>
@@ -1112,6 +1116,7 @@
     applyHash();
     updateScrollLinks();
 
+    var LEAD_ENDPOINT = 'https://creativeflow-ai.netlify.app/api/lead';
     var leadForm = document.getElementById('lead-form');
     if (leadForm){
       var status = document.getElementById('lf-status');
@@ -1127,11 +1132,37 @@
           return;
         }
 
-        var subject = encodeURIComponent('New project inquiry from ' + name);
-        var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-        status.textContent = 'Opening your email app so you can hit send...';
-        status.className = 'form-note success';
-        window.location.href = 'mailto:richmalone11@gmail.com?subject=' + subject + '&body=' + body;
+        // Inquiries go straight into CreativeFlow HQ (the Leads page). If that can't be reached,
+        // fall back to opening the visitor's email app with the message filled in.
+        var button = leadForm.querySelector('button[type="submit"]');
+        function emailInstead(){
+          var subject = encodeURIComponent('New project inquiry from ' + name);
+          var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+          status.textContent = 'Opening your email app so you can hit send...';
+          status.className = 'form-note success';
+          window.location.href = 'mailto:richmalone11@gmail.com?subject=' + subject + '&body=' + body;
+        }
+        button.disabled = true;
+        status.textContent = 'Sending...';
+        status.className = 'form-note';
+        fetch(LEAD_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name, email: email, message: message, website: document.getElementById('lf-website').value })
+        }).then(function(res){
+          if (res.ok) {
+            leadForm.reset();
+            status.textContent = "Got it! I'll get back to you at " + email + ' soon.';
+            status.className = 'form-note success';
+            return;
+          }
+          return res.json().catch(function(){ return {}; }).then(function(data){
+            var code = data && data.error && data.error.code;
+            if (code === 'bad_email') { status.textContent = "That email doesn't look right. Check it and try again."; status.className = 'form-note error'; return; }
+            if (code === 'daily_limit') { status.textContent = "You've already sent a few today. Email me directly at richmalone11@gmail.com."; status.className = 'form-note error'; return; }
+            emailInstead();
+          });
+        }).catch(emailInstead).then(function(){ button.disabled = false; });
       });
     }
   })();
