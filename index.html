@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CreativeFlows — Launching Soon</title>
+<title>CreativeFlows | Launching Soon</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
 
@@ -208,7 +208,7 @@ p.splash-sub{ font-family: var(--font-body); font-weight: 500; color: var(--text
       e.preventDefault();
       if (FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
         msg.hidden = false;
-        msg.textContent = "Signup isn't connected yet — check back soon.";
+        msg.textContent = "Signup isn't connected yet. Check back soon.";
         msg.className = 'form-msg error';
         return;
       }
@@ -223,14 +223,14 @@ p.splash-sub{ font-family: var(--font-body); font-weight: 500; color: var(--text
         if (res.ok) {
           form.hidden = true;
           msg.hidden = false;
-          msg.textContent = "You're on the list — we'll email you the moment we launch.";
+          msg.textContent = "You're on the list! We'll email you the moment we launch.";
           msg.className = 'form-msg success';
         } else {
           throw new Error('bad response');
         }
       }).catch(function(){
         msg.hidden = false;
-        msg.textContent = "Something went wrong — try again, or email richmalone11@gmail.com directly.";
+        msg.textContent = "Something went wrong. Try again, or email richmalone11@gmail.com directly.";
         msg.className = 'form-msg error';
         btn.disabled = false;
         btn.textContent = 'Notify me';
