@@ -540,6 +540,29 @@
   .book-call{ display:flex; flex-direction:column; align-items:center; gap:14px; margin: 34px auto 0; text-align:center; }
   .book-call .btn{ padding: 17px 40px; font-size: 16px; }
   .book-call-note{ color: var(--text-muted); font-weight:600; font-size:14px; max-width: 40ch; margin:0; }
+
+  /* homepage booking: inline calendar just above the footer.
+     The official snippet sets height:100% on the mount node; override that so the
+     card grows with the calendar instead of trapping a second scrollbar. */
+  #home-app{ border-bottom: none; }
+  #book{ scroll-margin-top: 88px; border-bottom: none; }
+  #book .cal-embed{
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    min-height: 520px;
+    margin: 8px auto 0;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #0d0a14;
+  }
+  #my-cal-inline{ width: 100%; height: auto !important; min-height: 520px; overflow: hidden !important; }
+  #my-cal-inline iframe{ display: block; width: 100%; border: 0; background: #0d0a14; color-scheme: dark; }
+  @media (max-width: 700px){
+    #book{ scroll-margin-top: 96px; padding-block: 48px 28px; }
+    #book .cal-embed{ border-radius: 22px; min-height: 640px; }
+    #my-cal-inline{ min-height: 640px; }
+  }
 </style>
 <style id="liquid-glass">
   /* ================= Liquid Glass =================
@@ -555,7 +578,7 @@
   }
   /* ---- the glass ---- */
   nav.topnav, .quick-card, .service-card, .proof-card, .about-card, .price-card, .download-block,
-  .download-option, .chat-card, footer.site-footer .wrap, .app-soon, .platform-pill{
+  .download-option, .chat-card, footer.site-footer .wrap, .app-soon, .platform-pill, #book .cal-embed{
     position: relative; isolation: isolate;
     background: var(--glass-fill);
     -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
@@ -564,7 +587,7 @@
   }
   /* bright, curved rim: strongest at the top-left, like light catching the edge of glass */
   nav.topnav::after, .quick-card::after, .service-card::after, .proof-card::after, .about-card::after,
-  .price-card::after, .download-block::after, footer.site-footer .wrap::after, .lg-sheen::after{
+  .price-card::after, .download-block::after, footer.site-footer .wrap::after, .lg-sheen::after, #book .cal-embed::after{
     content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; z-index: 2;
     background: linear-gradient(140deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.10) 80%, rgba(255,255,255,0.38) 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -697,7 +720,7 @@
 
   /* no blur support: keep panels readable */
   @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
-    nav.topnav, .quick-card, .service-card, .proof-card, .about-card, .price-card, .download-block, footer.site-footer .wrap{ background: rgba(20,16,34,0.92); }
+    nav.topnav, .quick-card, .service-card, .proof-card, .about-card, .price-card, .download-block, footer.site-footer .wrap, #book .cal-embed{ background: rgba(20,16,34,0.92); }
   }
 </style>
 </head>
@@ -918,6 +941,17 @@
     <div class="hero-ctas">
       <a class="btn btn-solid" href="#app">Take A Look</a>
     </div>
+  </div>
+</section>
+
+<section class="dark" id="book">
+  <div class="wrap">
+    <h2>Book a free 30&#8209;minute discovery call</h2>
+    <!-- Cal inline embed code begins -->
+    <div class="cal-embed">
+      <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline"></div>
+    </div>
+    <!-- Cal inline embed code ends -->
   </div>
 </section>
 </div>
@@ -1443,6 +1477,53 @@
   })();
 </script>
 
+<script type="text/javascript">
+  /* Cal.com official inline embed. Mounted once the homepage (and this section) is visible,
+     so the iframe can measure its box. Booking buttons keep their cal.com href and only
+     scroll here when this script runs. */
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "discovery", {origin:"https://cal.com"});
+
+  function mountDiscoveryEmbed(){
+    var el = document.getElementById("my-cal-inline");
+    var home = document.getElementById("home");
+    if (!el || el.getAttribute("data-cal-ready") === "1") return;
+    if (home && home.hidden) return;
+    el.setAttribute("data-cal-ready", "1");
+    Cal.ns.discovery("inline", {
+      elementOrSelector: "#my-cal-inline",
+      config: {"layout":"month_view","theme":"dark"},
+      calLink: "creativeflow/discovery",
+    });
+    Cal.ns.discovery("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#5b7bff"},"dark":{"cal-brand":"#5b7bff"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  }
+  mountDiscoveryEmbed();
+  window.addEventListener("hashchange", function(){ setTimeout(mountDiscoveryEmbed, 0); });
+
+  document.addEventListener("click", function(e){
+    var link = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!link) return;
+    var href = link.getAttribute("href") || "";
+    if (href.indexOf("https://cal.com/creativeflow/discovery") !== 0) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var section = document.getElementById("book");
+    if (!section) return;
+    e.preventDefault();
+    var home = document.getElementById("home");
+    var comingFromAnotherPage = !!(home && home.hidden);
+    // pushState updates the URL without the browser's instant hash jump.
+    // The router reveals the homepage and smooth-scrolls here.
+    if (location.hash !== "#book"){
+      history.pushState(null, "", "#book");
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    }
+    // Showing the homepage inserts it above the page the visitor was on,
+    // which would otherwise jump the scroll position. Start from the top
+    // and let the smooth scroll run the whole way.
+    if (comingFromAnotherPage) window.scrollTo(0, 0);
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>
 
 <script>
 /* Liquid Glass: the highlight on each panel follows the pointer. */
