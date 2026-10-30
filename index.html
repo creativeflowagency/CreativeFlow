@@ -675,6 +675,8 @@
   #contact h2.work-title{ max-width: none; }
   /* App page: start the title closer to the menu bar */
   #app{ padding-top: 8px; }
+  /* page text sits above the purple glow at the top (it was hidden under it in some browsers) */
+  section.page > .wrap{ position: relative; z-index: 1; }
   /* the name next to the logo in the menu bar */
   .brand-name{ font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--text); letter-spacing: -0.01em; }
   @media (max-width: 480px){
@@ -1032,7 +1034,6 @@
   <div class="wrap">
     <h2 class="work-title">Offer</h2>
 
-    <p class="offer-proof">Recorded and edited for IION at 109 Studios</p>
     <div class="offer-card price-card tier-growth">
       <div class="kicker">THE OFFER</div>
       <h3 class="offer-title">One long-form YouTube edit + 5 Shorts cut from it</h3>
