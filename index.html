@@ -614,7 +614,16 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 10px 24px -10px rgba(0,0,0,0.7);
   }
   /* Work page title in Helvetica */
-  #work h2.work-title{ font-family: Helvetica, "Helvetica Neue", Arial, sans-serif; font-weight: 700; font-size: clamp(40px, 8vw, 64px); letter-spacing: -0.02em; }
+  /* Work page: "My Work" as big faded Helvetica lettering behind the videos */
+  #work h2.work-title{
+    position: relative; z-index: 0; pointer-events: none; user-select: none;
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif; font-weight: 700; white-space: nowrap;
+    font-size: clamp(84px, 19vw, 250px); line-height: 0.82; letter-spacing: -0.045em; max-width: none;
+    color: transparent; background: linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(205,189,245,0.08) 55%, rgba(255,255,255,0) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    margin: 0 auto calc(clamp(84px, 19vw, 250px) * -0.42);
+  }
+  #work h2.work-title ~ *{ position: relative; z-index: 1; }
   .glyph{
     border-radius: 24px; border: 1px solid rgba(255,255,255,0.22);
     background: linear-gradient(150deg, rgba(126,146,255,0.35), rgba(255,255,255,0.05));
