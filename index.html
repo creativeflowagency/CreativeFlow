@@ -608,10 +608,22 @@
   }
 
   /* ---- small glass pieces ---- */
+  /* reel arrows: just the arrow, outside the video box */
   .reel-arrow{
-    background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.25);
-    -webkit-backdrop-filter: blur(16px) saturate(180%); backdrop-filter: blur(16px) saturate(180%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 10px 24px -10px rgba(0,0,0,0.7);
+    background: none !important; border: none !important; box-shadow: none !important;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    width: 36px; height: 48px; color: rgba(255,255,255,0.75); transition: color 0.15s ease;
+  }
+  .reel-arrow svg{ width: 26px; height: 26px; }
+  .reel-arrow:hover:not(:disabled){ color: #fff; }
+  .reel-arrow.prev{ left: -46px; }
+  .reel-arrow.next{ right: -46px; }
+  .reel-arrow:disabled{ opacity: 0.25; }
+  @media (max-width: 520px){
+    .reel-slider{ max-width: calc(100% - 64px); }
+    .reel-arrow{ width: 30px; }
+    .reel-arrow.prev{ left: -32px; }
+    .reel-arrow.next{ right: -32px; }
   }
   /* Work page title in Helvetica */
   /* Work page: "My Work" as big faded Helvetica lettering behind the videos */
