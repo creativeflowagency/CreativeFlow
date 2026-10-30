@@ -522,6 +522,130 @@
     .navlinks a.active:not(.nav-cta)::after{ transform: scaleX(1); }
   }
 
+
+  /* contact: book a call instead of a form */
+  .book-call{ display:flex; flex-direction:column; align-items:center; gap:14px; margin: 34px auto 0; text-align:center; }
+  .book-call .btn{ padding: 17px 40px; font-size: 16px; }
+  .book-call-note{ color: var(--text-muted); font-weight:600; font-size:14px; max-width: 40ch; margin:0; }
+</style>
+<style id="liquid-glass">
+  /* ================= Liquid Glass =================
+     Frosted, see-through panels with bright edges, over the site's own background.
+     Layered on top of the styles above: every page, section and text stays the same. */
+  :root{
+    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+    --glass-fill: linear-gradient(145deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.045) 45%, rgba(255,255,255,0.025) 100%);
+    --glass-blur: blur(26px) saturate(175%);
+    --glass-edge: rgba(255,255,255,0.16);
+    --glass-shadow: inset 0 1px 0 rgba(255,255,255,0.30), inset 0 -1px 0 rgba(255,255,255,0.06), 0 24px 60px -24px rgba(0,0,0,0.75);
+  }
+  /* ---- the glass ---- */
+  nav.topnav, .quick-card, .service-card, .proof-card, .about-card, .price-card, .download-block,
+  .download-option, .chat-card, footer.site-footer .wrap, .app-soon, .platform-pill, .reel-arrow{
+    position: relative; isolation: isolate;
+    background: var(--glass-fill);
+    -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-edge);
+    box-shadow: var(--glass-shadow);
+  }
+  /* bright, curved rim: strongest at the top-left, like light catching the edge of glass */
+  nav.topnav::after, .quick-card::after, .service-card::after, .proof-card::after, .about-card::after,
+  .price-card::after, .download-block::after, footer.site-footer .wrap::after, .lg-sheen::after{
+    content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; z-index: 2;
+    background: linear-gradient(140deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.10) 80%, rgba(255,255,255,0.38) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+  }
+  /* a soft highlight that follows the pointer across each panel */
+  .quick-card::before, .service-card::before, .proof-card::before, .about-card::before, .price-card::before, .download-block::before{
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+    background: radial-gradient(420px circle at var(--mx, 30%) var(--my, 0%), rgba(255,255,255,0.10), transparent 60%);
+    transition: opacity 0.3s ease;
+  }
+
+  /* panels: rounder, roomier */
+  .service-card, .proof-card, .about-card, .price-card, .download-block{ border-radius: 32px; }
+  .quick-card{ border-radius: 28px; }
+  .proof-thumb, .player, .frame{ border-radius: 22px; }
+  .player{ border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 40px 80px -30px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.25); }
+
+  /* ---- floating glass menu bar that stays at the top ---- */
+  header.site-header{ position: sticky; top: 0; padding-top: 12px; z-index: 50; }
+  nav.topnav{
+    border-radius: 999px; padding: 7px 8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.05));
+    -webkit-backdrop-filter: blur(30px) saturate(190%); backdrop-filter: blur(30px) saturate(190%);
+  }
+  .navlinks a:not(.nav-cta){ padding: 8px 4px; }
+
+  /* ---- glass buttons ---- */
+  .btn, .navlinks a.nav-cta{
+    position: relative; isolation: isolate; border-radius: 999px;
+    -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%);
+  }
+  .btn-outline{
+    background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 12px 30px -14px rgba(0,0,0,0.7);
+  }
+  .btn-outline:hover{ background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.07)); border-color: rgba(255,255,255,0.32); }
+  .btn-solid, .navlinks a.nav-cta{
+    background: linear-gradient(180deg, rgba(126,146,255,0.92) 0%, rgba(70,98,255,0.88) 55%, rgba(60,70,230,0.9) 100%);
+    border: 1px solid rgba(255,255,255,0.28);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -2px 6px rgba(20,20,90,0.35), 0 14px 34px -12px rgba(52,87,255,0.75);
+  }
+  .btn-solid:hover, .navlinks a.nav-cta:hover{ filter: brightness(1.1) saturate(1.05); }
+  @media (prefers-reduced-motion: no-preference){
+    .btn, .navlinks a.nav-cta{ transition: transform 0.25s cubic-bezier(.2,.8,.3,1.2), filter 0.2s ease, background 0.2s ease, box-shadow 0.25s ease; }
+    .btn:hover, .navlinks a.nav-cta:hover{ transform: translateY(-1px) scale(1.03); }
+    .btn:active, .navlinks a.nav-cta:active{ transform: scale(0.96); }
+    .service-card:hover, .price-card:hover, .proof-card:hover{
+      transform: translateY(-6px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 34px 70px -28px rgba(0,0,0,0.85);
+      border-color: rgba(255,255,255,0.26);
+    }
+  }
+
+  /* ---- small glass pieces ---- */
+  .glyph{
+    border-radius: 24px; border: 1px solid rgba(255,255,255,0.22);
+    background: linear-gradient(150deg, rgba(126,146,255,0.35), rgba(255,255,255,0.05));
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 14px 30px -14px rgba(52,87,255,0.8);
+  }
+  .glyph svg{ fill: #fff; }
+  .about-avatar{ box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 12px 28px -10px rgba(91,123,255,0.7); border: 1px solid rgba(255,255,255,0.3); }
+  .check{ background: linear-gradient(180deg, #7e92ff, #3457ff); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
+  .price-card.tier-growth{
+    border-color: rgba(160,175,255,0.45);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 0 80px -20px rgba(91,123,255,0.6), 0 30px 70px -30px rgba(0,0,0,0.8);
+  }
+  .player .controls .play-btn, .proof-thumb .play-btn, .frame .p{
+    background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.45);
+    -webkit-backdrop-filter: blur(14px) saturate(180%); backdrop-filter: blur(14px) saturate(180%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 10px 26px -8px rgba(0,0,0,0.5);
+  }
+  .player .controls .play-btn svg, .proof-thumb .play-btn svg, .frame .p svg{ fill: #fff; }
+  .player .controls .skip{ background: rgba(255,255,255,0.12); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-color: rgba(255,255,255,0.4); }
+  .player .caption-chip{ background: rgba(255,255,255,0.16); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; }
+  .lead-form input, .lead-form textarea{
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px;
+    -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .lead-form input:focus, .lead-form textarea:focus{ border-color: rgba(160,175,255,0.7); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 0 4px rgba(91,123,255,0.18); }
+
+  /* ---- footer: one glass panel ---- */
+  footer.site-footer{ background: transparent; border-top: none; padding-block: 40px 28px; }
+  footer.site-footer .wrap{ border-radius: 32px; padding: 34px 32px 24px; max-width: 1000px; }
+  @media (max-width: 1060px){ footer.site-footer .wrap{ margin-left: 16px; margin-right: 16px; } }
+  .footer-bottom{ border-top-color: rgba(255,255,255,0.08); }
+
+  /* no blur support: keep panels readable */
+  @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
+    nav.topnav, .quick-card, .service-card, .proof-card, .about-card, .price-card, .download-block, footer.site-footer .wrap{ background: rgba(20,16,34,0.92); }
+  }
 </style>
 </head>
 <body>
@@ -834,34 +958,12 @@
       </div>
     </div>
 
-    <form class="lead-form" id="lead-form" novalidate>
-      <div class="field">
-        <label for="lf-name">Name</label>
-        <input type="text" id="lf-name" name="name" autocomplete="name" placeholder="Your name" required>
-      </div>
-      <div class="field">
-        <label for="lf-email">Email</label>
-        <input type="email" id="lf-email" name="email" autocomplete="email" placeholder="you@email.com" required>
-      </div>
-      <div class="field">
-        <label for="lf-message">What do you need edited?</label>
-        <textarea id="lf-message" name="message" rows="4" placeholder="Tell me about your channel, the format, and any deadlines." required></textarea>
-      </div>
-      <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
-        <label for="lf-website">Leave this empty</label>
-        <input type="text" id="lf-website" name="website" tabindex="-1" autocomplete="off">
-      </div>
-      <button type="submit" class="btn btn-solid">Send it over</button>
-      <p class="form-note" id="lf-status" aria-live="polite"></p>
-    </form>
+    <div class="book-call">
+      <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery?user=creativeflow" target="_blank" rel="noopener">Book a free call</a>
+    </div>
 
     <p class="price-note">Prefer email? <a href="mailto:richmalone11@gmail.com?subject=Let's%20work%20together">richmalone11@gmail.com</a></p>
 
-    <div class="social-row">
-      <a href="https://www.instagram.com/creativefloworg/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.youtube.com/@rich_malone_16" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://x.com/_CreativeFlow" target="_blank" rel="noopener">X</a>
-    </div>
   </div>
 </section>
 
@@ -1193,5 +1295,18 @@
 </script>
 
 
+<script>
+/* Liquid Glass: the highlight on each panel follows the pointer. */
+(function(){
+  if (!window.matchMedia || !matchMedia("(hover: hover)").matches) return;
+  document.addEventListener("pointermove", function(e){
+    var el = e.target.closest && e.target.closest(".quick-card, .service-card, .proof-card, .about-card, .price-card, .download-block");
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+    el.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
