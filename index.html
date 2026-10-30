@@ -886,15 +886,6 @@
   </div>
 </section>
 
-<section class="dark" id="book">
-  <div class="wrap">
-    <!-- Cal inline embed code begins -->
-    <div class="cal-embed">
-      <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline"></div>
-    </div>
-    <!-- Cal inline embed code ends -->
-  </div>
-</section>
 </div>
 
 <section class="page dark" data-page="work" id="work" hidden>
@@ -1312,27 +1303,11 @@
 </script>
 
 <script type="text/javascript">
-  /* Cal.com official inline embed. Mounted once the homepage (and this section) is visible,
-     so the iframe can measure its box. Booking buttons keep their cal.com href and only
-     scroll here when this script runs. */
+  /* Booking buttons open the Cal.com calendar in a pop-up over the page (Cal.com's own embed).
+     They keep their cal.com link, so if the pop-up can't load the normal booking page opens. */
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", "discovery", {origin:"https://cal.com"});
-
-  function mountDiscoveryEmbed(){
-    var el = document.getElementById("my-cal-inline");
-    var home = document.getElementById("home");
-    if (!el || el.getAttribute("data-cal-ready") === "1") return;
-    if (home && home.hidden) return;
-    el.setAttribute("data-cal-ready", "1");
-    Cal.ns.discovery("inline", {
-      elementOrSelector: "#my-cal-inline",
-      config: {"layout":"month_view","theme":"dark"},
-      calLink: "creativeflow/discovery",
-    });
-    Cal.ns.discovery("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#5b7bff"},"dark":{"cal-brand":"#5b7bff"}},"hideEventTypeDetails":false,"layout":"month_view"});
-  }
-  mountDiscoveryEmbed();
-  window.addEventListener("hashchange", function(){ setTimeout(mountDiscoveryEmbed, 0); });
+  Cal.ns.discovery("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#5b7bff"},"dark":{"cal-brand":"#5b7bff"}},"hideEventTypeDetails":false,"layout":"month_view"});
 
   document.addEventListener("click", function(e){
     var link = e.target && e.target.closest ? e.target.closest("a[href]") : null;
@@ -1340,22 +1315,11 @@
     var href = link.getAttribute("href") || "";
     if (href.indexOf("https://cal.com/creativeflow/discovery") !== 0) return;
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var section = document.getElementById("book");
-    if (!section) return;
     e.preventDefault();
-    var home = document.getElementById("home");
-    var comingFromAnotherPage = !!(home && home.hidden);
-    // pushState updates the URL without the browser's instant hash jump.
-    // The router reveals the homepage and smooth-scrolls here.
-    if (location.hash !== "#book"){
-      history.pushState(null, "", "#book");
-      window.dispatchEvent(new HashChangeEvent("hashchange"));
-    }
-    // Showing the homepage inserts it above the page the visitor was on,
-    // which would otherwise jump the scroll position. Start from the top
-    // and let the smooth scroll run the whole way.
-    if (comingFromAnotherPage) window.scrollTo(0, 0);
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
+    Cal.ns.discovery("modal", { calLink: "creativeflow/discovery", config: {"layout":"month_view","theme":"dark"} });
+    // If the pop-up hasn't appeared after a few seconds (blocked or offline), open the booking page.
+    var url = link.href;
+    setTimeout(function(){ if (!document.querySelector("cal-modal-box")) window.open(url, "_blank", "noopener"); }, 4000);
   });
 </script>
 
