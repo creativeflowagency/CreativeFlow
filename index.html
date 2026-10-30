@@ -746,9 +746,8 @@
 <div class="page" data-page="home" id="home">
 <section id="hero">
   <div class="wrap">
-    <div class="eyebrow-thin">i am a video editor</div>
-    <h1 class="hero-headline">CreativeFlow edits your long-form video <em>and cuts 5 Shorts from it</em></h1>
-    <p class="hero-sub">One long-form YouTube edit + 5 Shorts for $176, delivered in 2 to 4 days</p>
+    <h1 class="hero-headline">Your next video is already shot. <em>It just hasn't been edited to win.</em></h1>
+    <p class="hero-sub">CreativeFlow turns your raw footage into one long-form YouTube video people watch to the end, plus 5 Shorts that pull new viewers in. $176, delivered in 2 to 4 days.</p>
 
     <div class="player" id="hero-video" role="button" tabindex="0" aria-label="Play video: CreativeFlow reel" data-video-id="-AbO_AZElV0">
       <div class="top-row">
@@ -769,7 +768,7 @@
     </div>
 
     <div class="hero-ctas">
-      <a class="btn btn-outline" href="#home-offer">Let's Work!</a>
+      <a class="btn btn-outline" href="#home-offer">Claim your spot</a>
     </div>
 
     <div class="quick-card">
@@ -780,27 +779,6 @@
   </div>
 </section>
 
-<section class="dark" id="services">
-  <div class="wrap">
-    <h2>One long-form edit. Five Shorts from it.</h2>
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8V4z"/></svg></div>
-        <h3>Long <em>Form</em></h3>
-        <p>Your full YouTube video, edited to keep people watching to the end</p>
-      </div>
-      <div class="service-card">
-        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8V4z"/></svg></div>
-        <h3>5 <em>Shorts</em></h3>
-        <p>Five Shorts cut from that same video</p>
-      </div>
-    </div>
-
-    <div class="hero-ctas" style="margin-top:36px;">
-      <a class="btn btn-solid" href="#home-offer">See the offer</a>
-    </div>
-  </div>
-</section>
 
 <div class="scroll-link" id="scroll-link-1" aria-hidden="true">
   <div class="scroll-link-fill" id="link-fill-1"></div>
@@ -811,7 +789,7 @@
 <section class="dark" id="proof">
   <div class="wrap">
     <h2>If that's not enough, take it from my previous clients</h2>
-    <p class="lede">You're spending hours creating videos, but the results just don't match the effort. The problem isn't consistency. It's what happens after people hit play.</p>
+    <p class="lede">You're putting hours into every video, and the views aren't paying it back. It's not your ideas, and it's not your consistency. People decide in the first few seconds whether to stay, and most edits lose them right there. That's the part I fix.</p>
 
     <div class="proof-grid">
       <div class="proof-card">
@@ -832,13 +810,12 @@
 
 <section class="dark" id="about">
   <div class="wrap">
-    <h2>About Me</h2>
-    <p class="lede">No agency. No outsourced editors. Just me, doing the work.</p>
+    <h2>No agency. No outsourced editors. Just me.</h2>
 
     <div class="about-card">
       <div class="about-avatar">RM</div>
       <h3>Rich Malone</h3>
-      <p class="about-bio">I'm a one man army right now. Cutting, adding music, making the final cut all of it goes through me. I love creating and have been creating for the longest time, with a focus on the details and the tiny stuff people usually miss. I turn your uncut, raw footage into engaging, must see videos. You don't need to worry about holding my hand with every project I know what works and how to do it. Give me the raw footage, and what you get in return will make you hit publish instantly.</p>
+      <p class="about-bio">I'm Rich, and every cut, sound and frame of your video goes through my hands. I obsess over the small details most editors skip, because that's where viewers decide to stay or leave. Send me your raw footage, and you'll get back a video you can't wait to publish.</p>
 
       <div class="about-points">
         <div class="point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> You work directly with me, always</div>
@@ -869,6 +846,8 @@
     .offer-plus{ align-self:center; font-family: var(--font-display); font-weight: 300; font-size: 34px; color: var(--lavender); }
     .offer-card .amount{ font-size: 52px; margin-bottom: 26px; }
     .offer-card ul{ margin-bottom: 30px; }
+    .offer-title{ font-family: var(--font-display); font-weight: 700; font-size: clamp(24px, 4.6vw, 32px); line-height: 1.2; margin: 14px 0 26px; text-wrap: balance; }
+    .offer-close{ font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--lavender); margin: 0 0 22px; }
     .offer-proof{ text-align:center; color: var(--text-muted); font-weight:600; font-size:14.5px; margin: 0 auto 34px; }
     @media (max-width: 480px){ .offer-card{ padding: 30px 20px; } .offer-num{ font-size: 46px; } .offer-what{ font-size: 14px; } .offer-card .amount{ font-size: 44px; } }
   </style>
@@ -877,23 +856,31 @@
     <p class="offer-proof">Recorded and edited for IION at 109 Studios</p>
     <div class="offer-card price-card tier-growth">
       <div class="kicker">THE OFFER</div>
-      <div class="offer-main">
-        <div class="offer-main-item"><span class="offer-num">1</span><span class="offer-what">long-form YouTube edit</span></div>
-        <div class="offer-plus" aria-hidden="true">+</div>
-        <div class="offer-main-item"><span class="offer-num">5</span><span class="offer-what">Shorts cut from it</span></div>
-      </div>
-      <div class="amount">$176</div>
+      <h3 class="offer-title">One long-form YouTube edit + 5 Shorts cut from it, for $176.</h3>
       <ul>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Thumbnail included</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A short content strategy call where we plan your next videos and Shorts together</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 rounds of changes</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> An edit built to hold attention from the first second to the last</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 5 Shorts that bring new viewers back to your channel</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A thumbnail made to get the click</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A content strategy call where we plan your next videos and Shorts together</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 rounds of changes until it's right</li>
         <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Delivered in 2 to 4 days</li>
       </ul>
+      <p class="offer-close">One video in, a week of content out.</p>
       <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book a free call</a>
     </div>
   </div>
 </section>
 
+
+<section class="dark" id="final-cta">
+  <div class="wrap">
+    <h2>Every video you post without a strong edit is views you don't get back.</h2>
+    <p class="lede">I only take on a few creators at a time so every edit gets my full attention. Book a free 30-minute call and let's plan your next video.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book your free call</a>
+    </div>
+  </div>
+</section>
 
 <section class="dark" id="book">
   <div class="wrap">
@@ -976,18 +963,16 @@
     <p class="offer-proof">Recorded and edited for IION at 109 Studios</p>
     <div class="offer-card price-card tier-growth">
       <div class="kicker">THE OFFER</div>
-      <div class="offer-main">
-        <div class="offer-main-item"><span class="offer-num">1</span><span class="offer-what">long-form YouTube edit</span></div>
-        <div class="offer-plus" aria-hidden="true">+</div>
-        <div class="offer-main-item"><span class="offer-num">5</span><span class="offer-what">Shorts cut from it</span></div>
-      </div>
-      <div class="amount">$176</div>
+      <h3 class="offer-title">One long-form YouTube edit + 5 Shorts cut from it, for $176.</h3>
       <ul>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Thumbnail included</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A short content strategy call where we plan your next videos and Shorts together</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 rounds of changes</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> An edit built to hold attention from the first second to the last</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 5 Shorts that bring new viewers back to your channel</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A thumbnail made to get the click</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A content strategy call where we plan your next videos and Shorts together</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 rounds of changes until it's right</li>
         <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Delivered in 2 to 4 days</li>
       </ul>
+      <p class="offer-close">One video in, a week of content out.</p>
       <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book a free call</a>
     </div>
 
@@ -1324,12 +1309,10 @@
 
 <script type="text/javascript">
   /* Cal.com official inline embed. Mounted once the homepage (and this section) is visible,
-     so the iframe can measure its box. Booking buttons keep their cal.com href and open
-     the calendar in a pop-up when this script runs. */
+     so the iframe can measure its box. Booking buttons keep their cal.com href and only
+     scroll here when this script runs. */
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", "discovery", {origin:"https://cal.com"});
-  Cal("init", "discoveryPopup", {origin:"https://cal.com"});
-  Cal.ns.discoveryPopup("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#5b7bff"},"dark":{"cal-brand":"#5b7bff"}},"hideEventTypeDetails":false,"layout":"month_view"});
 
   function mountDiscoveryEmbed(){
     var el = document.getElementById("my-cal-inline");
@@ -1353,12 +1336,22 @@
     var href = link.getAttribute("href") || "";
     if (href.indexOf("https://cal.com/creativeflow/discovery") !== 0) return;
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    // Open the calendar in a pop-up over the page. If Cal.com's pop-up hasn't appeared
-    // after a few seconds (blocked or offline), open the normal booking page instead.
+    var section = document.getElementById("book");
+    if (!section) return;
     e.preventDefault();
-    Cal.ns.discoveryPopup("modal", { calLink: "creativeflow/discovery", config: {"layout":"month_view","theme":"dark"} });
-    var url = link.href;
-    setTimeout(function(){ if (!document.querySelector("cal-modal-box")) window.open(url, "_blank", "noopener"); }, 4000);
+    var home = document.getElementById("home");
+    var comingFromAnotherPage = !!(home && home.hidden);
+    // pushState updates the URL without the browser's instant hash jump.
+    // The router reveals the homepage and smooth-scrolls here.
+    if (location.hash !== "#book"){
+      history.pushState(null, "", "#book");
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    }
+    // Showing the homepage inserts it above the page the visitor was on,
+    // which would otherwise jump the scroll position. Start from the top
+    // and let the smooth scroll run the whole way.
+    if (comingFromAnotherPage) window.scrollTo(0, 0);
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 </script>
 
