@@ -79,6 +79,8 @@
   }
 
   .scroll-link{ position: relative; height: 100px; background: var(--bg-card); }
+  /* the first connector comes out of the hero (page colour): fade into the card colour instead of a hard step */
+  #scroll-link-1{ background: radial-gradient(55% 70% at 50% 100%, rgba(91,123,255,0.12), transparent 75%), linear-gradient(var(--bg), var(--bg-card)); }
   .scroll-link-fill{
     position:absolute; left:50%; top:0; width:2px; height:0%; transform:translateX(-50%);
     background: linear-gradient(180deg, var(--blue-2), var(--violet-hi));
