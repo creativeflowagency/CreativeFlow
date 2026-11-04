@@ -737,6 +737,12 @@
   @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
     nav.topnav, .quick-card, .service-card, .proof-card, .about-card, .price-card, .download-block, footer.site-footer .wrap, #book .cal-embed{ background: rgba(20,16,34,0.92); }
   }
+  /* Speed: blurring what's behind every panel and button made scrolling stutter (about 19 fps on a
+     laptop). The panels sit on a dark, nearly flat background, so the blur barely showed: a slightly
+     richer fill keeps the same glass look, and only the floating menu keeps a light blur. */
+  *:not(nav.topnav){ -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  nav.topnav{ -webkit-backdrop-filter: blur(16px) !important; backdrop-filter: blur(16px) !important; }
+  :root{ --glass-fill: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.055) 45%, rgba(255,255,255,0.035) 100%), rgba(13,10,20,0.55); }
 </style>
 </head>
 <body>
