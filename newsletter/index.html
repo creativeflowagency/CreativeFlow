@@ -172,7 +172,7 @@
       if (!name) { say('Add your name.', 'err'); form.name.focus(); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say("That email doesn't look right.", 'err'); form.email.focus(); return; }
       var btn = form.querySelector('button'); btn.disabled = true; say('Joining…');
-      post({ name: name, email: email, website: form.website.value }).then(function (r) {
+      post({ name: name, email: email, source: 'newsletter', website: form.website.value }).then(function (r) {
         if (r.ok) { done("You're in, " + name + '!', "Thanks for joining. The next newsletter lands in " + email + '.'); return; }
         var code = r.data && r.data.error && r.data.error.code;
         say(code === 'bad_email' ? "That email doesn't look right." : code === 'daily_limit' ? "You've tried a few times today. Try again tomorrow." : "Couldn't sign you up. Try again in a minute.", 'err');

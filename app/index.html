@@ -983,7 +983,7 @@
       if (!name) { say('Add your name.', true); form.name.focus(); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say("That email doesn't look right.", true); form.email.focus(); return; }
       var btn = form.querySelector('button'); btn.disabled = true; say('Signing you up…');
-      fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, email: email, website: form.website.value }) })
+      fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, email: email, source: 'app', website: form.website.value }) })
         .then(function(res){ return res.json().catch(function(){ return {}; }).then(function(d){ return { ok: res.ok, d: d }; }); })
         .then(function(r){
           if (r.ok) {
