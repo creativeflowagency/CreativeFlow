@@ -630,6 +630,28 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation: none !important; transition: none !important; }
   }
+
+  /* Newsletter signup above the footer (adds people to the HQ Newsletter list) */
+  .nl-strip{ background: var(--ink-2); border-top: 1px solid var(--line); padding: 64px 0; }
+  .nl-strip .wrap{ display: grid; gap: 22px; align-items: center; }
+  .nl-strip .kicker{ font-weight: 600; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 10px; }
+  .nl-strip h2{ font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.08; letter-spacing: -0.04em; color: #fff; margin: 0; max-width: 16ch; }
+  .nl-strip p.nl-copy{ margin: 10px 0 0; color: var(--text-dim); font-size: 16px; line-height: 1.55; max-width: 44ch; }
+  .nl-strip form{ display: grid; gap: 10px; }
+  .nl-strip .nl-row{ display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .nl-strip input{ width: 100%; min-height: 50px; padding: 0 14px; font: inherit; font-size: 16px; font-weight: 500; color: var(--text);
+    background: var(--ink); border: 1px solid var(--line-strong); border-radius: 8px; }
+  .nl-strip input::placeholder{ color: #6d6c76; }
+  .nl-strip input:focus{ outline: none; border-color: var(--accent-ink); box-shadow: 0 0 0 3px rgba(92,47,224,0.35); }
+  .nl-strip .btn{ min-height: 50px; }
+  .nl-strip .btn[disabled]{ opacity: 0.7; cursor: default; }
+  .nl-strip .nl-hp{ position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .nl-strip .nl-msg{ min-height: 1.4em; margin: 0; font-size: 14px; font-weight: 500; color: var(--text-dim); }
+  .nl-strip .nl-msg.ok{ color: #8ee6b4; } .nl-strip .nl-msg.err{ color: #ff9a9a; }
+  .nl-strip .nl-fine{ margin: 0; font-size: 12.5px; color: #8e8d96; }
+  .nl-strip .nl-fine a{ color: #d8d7de; }
+  @media (min-width: 720px){ .nl-strip .nl-row{ grid-template-columns: 1fr 1.3fr auto; } }
+  @media (min-width: 900px){ .nl-strip{ padding: 80px 0; } .nl-strip .wrap{ grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; } }
 </style>
 
 
@@ -915,6 +937,26 @@
 
     <h3>Questions</h3>
     <p>This policy may be updated as the business grows. Reach out anytime at <a href="mailto:richmalone11@gmail.com?subject=Privacy%20question">richmalone11@gmail.com</a> with questions.</p>
+  </div>
+</section>
+
+<section class="nl-strip" aria-labelledby="nlStripHead">
+  <div class="wrap">
+    <div>
+      <p class="kicker">The CreativeFlow Newsletter</p>
+      <h2 id="nlStripHead">Make better videos, one email at a time.</h2>
+      <p class="nl-copy">Editing tips, creator strategy and CreativeFlow news, straight to your inbox.</p>
+    </div>
+    <form id="nlStripForm" novalidate>
+      <div class="nl-row">
+        <input name="name" autocomplete="given-name" maxlength="100" placeholder="Your name" aria-label="Your name" required>
+        <input name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@example.com" aria-label="Email" required>
+        <button class="btn btn-solid" type="submit">Join</button>
+      </div>
+      <div class="nl-hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="nl-msg" id="nlStripMsg" role="status" aria-live="polite"></p>
+      <p class="nl-fine">No spam. Unsubscribe any time. <a href="#privacy">Privacy</a></p>
+    </form>
   </div>
 </section>
 
@@ -1224,6 +1266,31 @@
     el.style.setProperty("--my", (e.clientY - r.top) + "px");
   }, { passive: true });
 })();
+</script>
+<script>
+  // Newsletter signup above the footer: adds the person to the HQ Newsletter list.
+  (function(){
+    var form = document.getElementById('nlStripForm'), msg = document.getElementById('nlStripMsg');
+    if (!form) return;
+    function say(t, kind){ msg.textContent = t; msg.className = 'nl-msg' + (kind ? ' ' + kind : ''); }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = form.name.value.trim(), email = form.email.value.trim();
+      if (!name) { say('Add your name.', 'err'); form.name.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say("That email doesn't look right.", 'err'); form.email.focus(); return; }
+      var btn = form.querySelector('button'); btn.disabled = true; say('Joining…');
+      fetch('https://creativeflow-ai.netlify.app/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, source: 'agency', website: form.website.value }) })
+        .then(function(res){ return res.json().catch(function(){ return {}; }).then(function(d){ return { ok: res.ok, d: d }; }); })
+        .then(function(r){
+          if (r.ok) { form.reset(); say("You're in, " + name + '! The next newsletter lands in ' + email + '.', 'ok'); btn.disabled = false; return; }
+          var code = r.d && r.d.error && r.d.error.code;
+          say(code === 'bad_email' ? "That email doesn't look right." : code === 'daily_limit' ? "You've tried a few times today. Try again tomorrow." : "Couldn't sign you up. Try again in a minute.", 'err');
+          btn.disabled = false;
+        })
+        .catch(function(){ say("Couldn't reach the server. Check your connection and try again.", 'err'); btn.disabled = false; });
+    });
+  })();
 </script>
 </body>
 </html>
