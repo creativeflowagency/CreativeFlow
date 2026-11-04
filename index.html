@@ -15,6 +15,9 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0a0712">
 <link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
 <script>
   // Old links like creativeflow.media/#contact go to the same place on the agency site.
   (function () {
@@ -37,82 +40,137 @@
 </script>
 <style>
   :root{
-    --bg: #0a0712; --violet-hi: #8358ff; --violet-mid: #5c2fe0; --violet-low: #241049;
-    --blue-2: #5b7bff; --lavender: #cdbdf5; --lavender-dim: #9c8fc4;
-    --text: #f5f2fb; --text-muted: #b3abc9; --border: rgba(205,189,245,0.22);
-    --font: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    --ink: #0e0f13;
+    --text: #f3f2ee;
+    --text-dim: #b4b3bb;
+    --accent: #5c2fe0;
+    --font: "Plus Jakarta Sans", "Segoe UI", Helvetica, Arial, sans-serif;
   }
   *{ box-sizing: border-box; }
-  html, body{ margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: clip; }
-  body{ min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
-  #glow{ position: fixed; inset: 0 0 auto 0; height: 720px; pointer-events: none; z-index: 0;
+  html, body{ margin: 0; background: var(--ink); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  body{ min-height: 100vh; min-height: 100dvh; display: grid; grid-template-rows: 1fr auto; }
+  .sky{
+    position: fixed; inset: -12%; z-index: 0; pointer-events: none;
     background:
-      radial-gradient(60% 30% at 80% 4%, rgba(131,88,255,0.35), transparent 70%),
-      radial-gradient(120% 46% at 50% 0%, var(--violet-mid) 0%, var(--violet-low) 34%, var(--bg) 60%); }
-  main{ position: relative; z-index: 1; flex: 1; width: min(980px, 100%); margin: 0 auto;
-    padding: calc(56px + env(safe-area-inset-top)) 16px 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .logo{ width: 84px; height: 84px; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5)); animation: rise .6s both; }
-  h1{ font-size: clamp(38px, 8vw, 64px); font-weight: 700; letter-spacing: -0.03em; margin: 18px 0 8px; text-align: center; animation: rise .6s .06s both; }
-  .sub{ margin: 0 0 40px; color: var(--text-muted); font-weight: 600; font-size: clamp(15px, 2.2vw, 18px); text-align: center; animation: rise .6s .12s both; }
-  .choices{ width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .choice{ position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 260px; padding: 30px 28px; border-radius: 26px;
-    text-decoration: none; color: var(--text); overflow: hidden; isolation: isolate;
-    background: linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.025));
-    border: 1px solid var(--border); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 20px 50px rgba(0,0,0,0.35);
-    -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
-    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; animation: rise .6s both; }
-  .choice:nth-child(1){ animation-delay: .18s; } .choice:nth-child(2){ animation-delay: .26s; }
-  .choice::before{ content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .25s ease;
-    background: radial-gradient(70% 60% at 50% 0%, rgba(131,88,255,0.35), transparent 70%); }
-  .choice:hover{ transform: translateY(-4px); border-color: rgba(131,88,255,0.65); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 26px 60px rgba(92,47,224,0.35); }
-  .choice:hover::before{ opacity: 1; }
-  .choice:focus-visible{ outline: 2px solid var(--blue-2); outline-offset: 4px; }
-  .icon{ width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: rgba(91,123,255,0.16); border: 1px solid rgba(91,123,255,0.35); }
-  .icon svg{ width: 26px; height: 26px; color: var(--blue-2); }
-  .tag{ font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lavender-dim); margin-top: 8px; }
-  .choice h2{ margin: 0; font-size: clamp(26px, 4vw, 34px); letter-spacing: -0.02em; }
-  .choice p{ margin: 0; color: var(--text-muted); font-weight: 600; font-size: 15px; line-height: 1.5; max-width: 36ch; }
-  .go{ margin-top: auto; padding-top: 18px; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: var(--lavender); }
-  .go svg{ width: 18px; height: 18px; transition: transform .2s ease; }
-  .choice:hover .go svg{ transform: translateX(4px); }
-  .soon{ position: absolute; top: 26px; right: 24px; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 6px 10px; border-radius: 999px; color: var(--lavender); border: 1px solid var(--border); background: rgba(255,255,255,0.05); }
-  footer{ position: relative; z-index: 1; text-align: center; padding: 22px 16px calc(22px + env(safe-area-inset-bottom)); color: var(--lavender-dim); font-size: 13px; }
-  footer a{ color: var(--lavender-dim); }
-  @keyframes rise{ from{ opacity: 0; transform: translateY(14px); } to{ opacity: 1; transform: none; } }
-  @media (max-width: 700px){
-    .choices{ grid-template-columns: 1fr; gap: 14px; }
-    .choice{ min-height: 0; padding: 24px 22px; }
-    .sub{ margin-bottom: 28px; }
+      radial-gradient(42% 32% at 50% 22%, rgba(92,47,224,0.42), transparent 68%),
+      radial-gradient(28% 36% at 82% 78%, rgba(91,123,255,0.16), transparent 70%),
+      radial-gradient(26% 30% at 14% 72%, rgba(92,47,224,0.18), transparent 70%);
+    animation: drift 16s ease-in-out infinite alternate;
   }
-  @media (prefers-reduced-motion: reduce){ *{ animation: none !important; transition: none !important; } }
+  body::after{
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 40%, transparent 40%, rgba(0,0,0,0.45) 100%);
+  }
+  @keyframes drift{
+    from{ transform: translate3d(0, 0, 0) scale(1); }
+    to{ transform: translate3d(0, -2.5%, 0) scale(1.06); }
+  }
+  main{
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: calc(28px + env(safe-area-inset-top)) 18px 20px;
+    text-align: center;
+  }
+  .logo{
+    width: 112px; height: 112px;
+    filter: drop-shadow(0 16px 28px rgba(0,0,0,0.45));
+  }
+  h1{
+    margin: 14px 0 0;
+    font-size: clamp(44px, 8vw, 76px);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+  .sub{
+    margin: 12px 0 0;
+    color: var(--text-dim);
+    font-weight: 500;
+    font-size: clamp(15px, 2vw, 18px);
+  }
+  .menu{
+    width: min(520px, 100%);
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .menu-btn{
+    display: flex; align-items: center; justify-content: center;
+    min-height: 64px;
+    padding: 16px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: clamp(22px, 4.2vw, 28px);
+    letter-spacing: 0.01em;
+    background: linear-gradient(180deg, #323341 0%, #1c1d27 100%);
+    border: 2px solid #454656;
+    border-bottom-width: 5px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
+    transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  }
+  .menu-btn:hover,
+  .menu-btn:focus-visible{
+    color: #fff;
+    border-color: #a594ff;
+    background: linear-gradient(180deg, #4a3f86 0%, #2a2158 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 0 0 3px rgba(92,47,224,0.45);
+    outline: none;
+  }
+  .menu-btn:active{
+    transform: translateY(3px);
+    border-bottom-width: 2px;
+  }
+  footer{
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+    color: #8e8d96;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  footer a{ color: #d8d7de; text-decoration: none; }
+  footer a:hover{ color: #fff; }
+  footer a:focus-visible{ outline: 2px solid #c9c0ff; outline-offset: 3px; }
+  @media (min-width: 800px){
+    .logo{ width: 148px; height: 148px; }
+    .menu{ width: min(560px, 100%); margin-top: 42px; gap: 16px; }
+    .menu-btn{ min-height: 72px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .sky{ animation: none; }
+    .menu-btn{ transition: none; }
+  }
 </style>
 </head>
 <body>
-<div id="glow" aria-hidden="true"></div>
+<div class="sky" aria-hidden="true"></div>
 <main>
-  <img class="logo" src="/favicon.png" alt="" width="84" height="84">
+  <img class="logo" src="/favicon.png" alt="" width="148" height="148">
   <h1>CreativeFlow</h1>
   <p class="sub">Where do you want to go?</p>
-
-  <nav class="choices" aria-label="Choose a site">
-    <a class="choice" href="/agency/">
-      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg></span>
-      <span class="tag">The agency</span>
-      <h2>Video Editing</h2>
-      <p>Film once. Get a full YouTube video and 5 Shorts back in days, edited by me.</p>
-      <span class="go">Go to the agency <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-    <a class="choice" href="/app/">
-      <span class="soon">Coming soon</span>
-      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l10 5-10 5L2 7l10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></svg></span>
-      <span class="tag">The app</span>
-      <h2>CreativeFlow App</h2>
-      <p>Ideas, scripts, planning, levels and Adonis, your creative partner. The app that makes creators' lives easier.</p>
-      <span class="go">See the app <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
+  <nav class="menu" aria-label="Choose a site">
+    <a class="menu-btn" href="/agency/">Agency</a>
+    <a class="menu-btn" href="/app/">App</a>
   </nav>
 </main>
 <footer>&copy; 2026 CreativeFlow · <a href="/agency/#terms">Terms</a> · <a href="/agency/#privacy">Privacy</a></footer>
+<script>
+  (function () {
+    var buttons = Array.prototype.slice.call(document.querySelectorAll(".menu-btn"));
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      if (e.altKey || e.ctrlKey || e.metaKey) return;
+      var index = buttons.indexOf(document.activeElement);
+      var next;
+      if (index === -1) next = e.key === "ArrowUp" ? buttons.length - 1 : 0;
+      else next = e.key === "ArrowDown" ? (index + 1) % buttons.length : (index - 1 + buttons.length) % buttons.length;
+      buttons[next].focus();
+      e.preventDefault();
+    });
+  })();
+</script>
 </body>
 </html>
