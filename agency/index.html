@@ -745,6 +745,12 @@
   *:not(nav.topnav){ -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
   nav.topnav{ -webkit-backdrop-filter: blur(16px) !important; backdrop-filter: blur(16px) !important; }
   :root{ --glass-fill: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.055) 45%, rgba(255,255,255,0.035) 100%), rgba(13,10,20,0.55); }
+  /* Footer: a full-width glass strip from edge to edge; the text stays lined up with the page. */
+  footer.site-footer{ margin-top: 40px; padding: 0; background: var(--glass-fill); border-top: 1px solid var(--glass-edge);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 -24px 60px -30px rgba(0,0,0,0.7); }
+  footer.site-footer .wrap{ max-width: 1000px; margin: 0 auto !important; border-radius: 0; background: none; border: none; box-shadow: none;
+    padding: 40px 24px calc(28px + env(safe-area-inset-bottom)); }
+  footer.site-footer .wrap::after{ display: none; }
 </style>
 </head>
 <body>
