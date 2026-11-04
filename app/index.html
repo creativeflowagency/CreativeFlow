@@ -110,33 +110,39 @@
     position: relative;
     padding: 56px 0 72px;
     background:
-      radial-gradient(720px 380px at 88% 0%, rgba(92,47,224,0.18), transparent 62%),
+      radial-gradient(720px 420px at 50% 0%, rgba(92,47,224,0.18), transparent 62%),
       var(--ink);
   }
   #hero .wrap{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 18px;
-    text-align: left;
+    text-align: center;
   }
   h1.hero-headline{
     font-weight: 700;
     font-size: clamp(38px, 10.2vw, 64px);
     line-height: 1.02;
     letter-spacing: -0.045em;
-    max-width: 16ch;
+    max-width: 18ch;
+    margin: 0 auto;
   }
   h1.hero-headline em{ font-style: normal; color: var(--accent-ink); }
   p.hero-sub{
-    margin: 0;
-    max-width: 36ch;
+    margin: 0 auto;
+    max-width: 42ch;
     color: var(--text-dim);
     font-size: 18px;
     font-weight: 400;
     line-height: 1.5;
   }
-  .hero-ctas{ margin: 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  #hero .hero-sub{ order: 2; }
+  #hero h1{ order: 1; }
+  #hero .hero-ctas{ order: 3; }
+  #hero .quick-card{ order: 4; justify-content: center; }
+  #hero .player{ order: 5; width: 100%; max-width: 980px; margin-top: 14px; }
+  .hero-ctas{ margin: 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
   .btn{
     font-family: var(--font);
     font-weight: 600;
@@ -585,24 +591,9 @@
   }
   @media (min-width: 900px){
     section.dark, section.page{ padding: 104px 0; }
-    #hero{ padding: 72px 0 88px; }
-    #hero .wrap{
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      grid-template-areas:
-        "title media"
-        "sub media"
-        "ctas media"
-        "quick media";
-      column-gap: 64px;
-      row-gap: 16px;
-      align-items: center;
-    }
-    #hero h1{ grid-area: title; font-size: clamp(46px, 4.2vw, 60px); }
-    #hero .hero-sub{ grid-area: sub; }
-    #hero .hero-ctas{ grid-area: ctas; }
-    #hero .quick-card{ grid-area: quick; }
-    #hero .player{ grid-area: media; }
+    #hero{ padding: 52px 0 88px; }
+    #hero h1{ font-size: clamp(48px, 4.4vw, 60px); }
+    #hero .player{ max-width: 1000px; margin-top: 8px; }
     #proof .wrap{
       display: grid;
       grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
