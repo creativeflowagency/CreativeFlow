@@ -602,6 +602,9 @@
     .reel-arrow.next{ right: -36px; }
     #final-cta .wrap, .offer-card{ padding: 28px 20px; }
   }
+  /* With four links, small phones show just the logo (it still goes home). */
+  @media (max-width: 560px){ .brand-name{ display: none; } .brand, .brand-logo{ flex: none; } }
+  @media (max-width: 360px){ .navlinks{ gap: 9px !important; } .navlinks a{ font-size: 13px !important; } .navlinks a.nav-cta{ padding: 8px 10px !important; } }
   @media (max-width: 520px){
     .wrap{
       padding-left: max(18px, env(safe-area-inset-left, 0px));
@@ -613,6 +616,7 @@
     .navlinks{ gap: 12px; }
     .navlinks a{ font-size: 13.5px; }
     .navlinks a.nav-cta{ padding: 9px 12px; }
+    .navlinks{ flex: none; }
     section.dark, section.page{ padding: 64px 0; }
     #hero{ padding: 28px 0 48px; }
     h1.hero-headline{ font-size: clamp(36px, 10.5vw, 46px); }
@@ -671,6 +675,7 @@
     <div class="navlinks">
       <a href="#home">Home</a>
       <a href="#work">Work</a>
+      <a href="https://flowreview.creativeflow.media/">FlowReview</a>
       <a href="#contact" class="nav-cta">Let's talk</a>
     </div>
   </nav>
