@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CreativeFlow | YouTube Video Editing Agency in Iceland</title>
-<meta name="description" content="CreativeFlow edits your long-form YouTube video and cuts 5 Shorts from it. Thumbnail, content strategy and 3 rounds of changes included, delivered in 2 to 4 days.">
+<meta name="description" content="CreativeFlow is a video editing agency for business YouTubers. Monthly package: 4 retention-edited long-form videos, 10 Shorts and a thumbnail for every video, delivered in 3 to 4 days.">
 <link rel="canonical" href="https://creativeflow.media/agency/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CreativeFlow">
 <meta property="og:title" content="CreativeFlow | YouTube Video Editing Agency in Iceland">
-<meta property="og:description" content="CreativeFlow edits your long-form YouTube video and cuts 5 Shorts from it. Thumbnail, content strategy and 3 rounds of changes included, delivered in 2 to 4 days.">
+<meta property="og:description" content="CreativeFlow is a video editing agency for business YouTubers. Monthly package: 4 retention-edited long-form videos, 10 Shorts and a thumbnail for every video, delivered in 3 to 4 days.">
 <meta property="og:url" content="https://creativeflow.media/agency/">
 <meta property="og:image" content="https://creativeflow.media/favicon.png">
 <meta name="twitter:card" content="summary">
@@ -467,6 +467,28 @@
     width: 16px; height: 16px; fill: none; stroke: currentColor;
     stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
   }
+  .offer-sub{ text-align: center; color: var(--text-dim); font-size: 17px; line-height: 1.6; max-width: 52ch; margin: 0 auto 12px; }
+  .offer-price small{ font-size: 18px; font-weight: 500; letter-spacing: -0.01em; color: var(--text-dim); margin-left: 6px; }
+  .offer-addons{ margin: 0; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--text-dim); font-size: 15px; font-weight: 500; }
+  .offer-addons strong{ color: #fff; font-weight: 600; }
+  #how{ background: var(--paper); }
+  #faq{ background: #fff; }
+  #how, #faq{ scroll-margin-top: 84px; }
+  .steps{ display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; counter-reset: none; }
+  .step{ background: #fff; border: 1px solid var(--paper-line); border-radius: 14px; padding: 22px 22px 24px; }
+  .step .n{ display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 14px; }
+  .step h3{ margin: 14px 0 6px; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink-text); }
+  .step p{ margin: 0; color: var(--ink-dim); font-size: 15px; line-height: 1.55; }
+  @media (min-width: 720px){ .steps{ grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px){ .steps{ grid-template-columns: repeat(4, 1fr); } }
+  .faq{ max-width: 760px; margin-top: 20px; border-top: 1px solid var(--paper-line); }
+  .faq details{ border-bottom: 1px solid var(--paper-line); }
+  .faq summary{ list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 2px; font-weight: 600; font-size: 17px; color: var(--ink-text); }
+  .faq summary::-webkit-details-marker{ display: none; }
+  .faq summary::after{ content: "+"; flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; font-weight: 500; color: var(--accent); background: rgba(92,47,224,0.08); transition: transform 0.2s ease; }
+  .faq details[open] summary::after{ transform: rotate(45deg); }
+  .faq summary:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+  .faq details p{ margin: 0 0 20px; padding: 0 2px; color: var(--ink-dim); font-size: 16px; line-height: 1.6; max-width: 62ch; }
   .offer-close{ font-weight: 500; font-size: 15px; color: var(--text-dim); margin: 16px 0 20px; }
   .offer-card .btn-solid{ width: 100%; }
   .price-note{ text-align: center; color: var(--text-dim); font-size: 15px; margin: 22px 0 0; font-weight: 500; }
@@ -723,7 +745,7 @@
 <section id="hero">
   <div class="wrap">
     <h1 class="hero-headline">Your next video is already shot. <em>It just hasn't been edited to win.</em></h1>
-    <p class="hero-sub">Film once. Get a full video and 5 Shorts back in days.</p>
+    <p class="hero-sub">Film once. Get a retention-edited video and Shorts back in 3 to 4 days.</p>
 
     <div class="player" id="hero-video" role="button" tabindex="0" aria-label="Play video: CreativeFlow reel" data-video-id="-AbO_AZElV0">
       <div class="top-row">
@@ -764,8 +786,8 @@
 
 <section class="dark" id="proof">
   <div class="wrap">
-    <h2>If that's not enough, take it from my previous clients</h2>
-    <p class="lede">You're putting hours into every video, and the views aren't paying it back. It's not your ideas, and it's not your consistency. People decide in the first few seconds whether to stay, and most edits lose them right there. That's the part I fix.</p>
+    <h2>If that's not enough, take it from our previous clients</h2>
+    <p class="lede">You're putting hours into every video, and the views aren't paying it back. It's not your ideas, and it's not your consistency. People decide in the first few seconds whether to stay, and most edits lose them right there. That's the part we fix.</p>
 
     <div class="proof-grid">
       <div class="proof-card">
@@ -786,17 +808,17 @@
 
 <section class="dark" id="about">
   <div class="wrap">
-    <h2>No agency. No outsourced editors. Just me.</h2>
+    <h2>An editing agency built for business channels.</h2>
 
     <div class="about-card">
-      <div class="about-avatar">RM</div>
-      <h3>Rich Malone</h3>
-      <p class="about-bio">I'm Rich, and every cut, sound and frame of your video goes through my hands. I obsess over the small details most editors skip, because that's where viewers decide to stay or leave. Send me your raw footage, and you'll get back a video you can't wait to publish.</p>
+      <div class="about-avatar">CF</div>
+      <h3>CreativeFlow</h3>
+      <p class="about-bio">CreativeFlow is a video editing agency based in Iceland. Our in-house editors work with course creators, entrepreneurs and startup founders, turning raw footage into retention edits built to keep viewers watching. We care about the small details most edits skip, because that's where viewers decide to stay or leave. Every video is edited, refined and finished by our team.</p>
 
       <div class="about-points">
-        <div class="point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> You work directly with me, always</div>
-        <div class="point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg> Fast turnarounds, no waiting weeks</div>
-        <div class="point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg> Real feedback until the edit's right</div>
+        <div class="point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> One team that works on your channel every month</div>
+        <div class="point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg> Each video delivered in 3 to 4 days</div>
+        <div class="point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg> 3 revision rounds on every video</div>
       </div>
     </div>
   </div>
@@ -810,31 +832,58 @@
 
 <section class="dark" id="home-offer">
   <div class="wrap">
-    <h2>Let's Work!</h2>
+    <h2>Retention editing for business YouTube channels.</h2>
+    <p class="offer-sub">Our editors turn your raw footage into long-form videos and Shorts built to hold attention from the first second to the last. One monthly package, one team, every video finished to the same standard.</p>
     <p class="offer-proof">Recorded and edited for IION at 109 Studios</p>
     <div class="offer-card price-card tier-growth">
-      <div class="kicker">THE OFFER</div>
-      <h3 class="offer-title">One long-form YouTube edit + 5 Shorts cut from it</h3>
-      <div class="offer-price">$176</div>
+      <div class="kicker">THE MONTHLY PACKAGE</div>
+      <h3 class="offer-title">Four long-form videos and ten Shorts, every month</h3>
+      <div class="offer-price">$1,100<small>/month</small></div>
       <ul>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> An edit built to hold attention from the first second to the last</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 5 Shorts that bring new viewers back to your channel</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A thumbnail made to get the click</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A content strategy call where we plan your next videos and Shorts together</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 rounds of changes until it's right</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Delivered in 2 to 4 days</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 4 long-form videos (10–20 minutes each), retention-edited</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 10 Shorts cut from those videos</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A custom thumbnail for every long-form video</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 revision rounds per video</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Each video delivered in 3 to 4 days</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Fast pacing, animated captions, B&#8209;roll, zooms, title cards, sound design and a strong colour grade</li>
       </ul>
-      <p class="offer-close">One video in, a week of content out.</p>
-      <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book a free call</a>
+      <p class="offer-addons"><strong>Need more?</strong> Extra long-form video $200 · Extra Short $30</p>
+      <p class="offer-close">Let's plan your next month of videos.</p>
+      <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book a call</a>
     </div>
   </div>
 </section>
 
 
+<section class="dark" id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h3>Send your footage</h3><p>Upload your raw recordings to a shared Google Drive folder, along with any notes, links or reference videos.</p></div>
+      <div class="step"><span class="n">2</span><h3>We edit</h3><p>Our editors cut and pace each video, then add captions, B&#8209;roll, sound design and colour. We also cut the Shorts and design the thumbnail.</p></div>
+      <div class="step"><span class="n">3</span><h3>You review</h3><p>Watch each edit and send your notes. Every video includes three revision rounds.</p></div>
+      <div class="step"><span class="n">4</span><h3>We deliver</h3><p>Final videos, Shorts and thumbnails go back into your Google Drive folder, ready to upload.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <div class="faq">
+      <details><summary>How do revisions work?</summary><p>Every video includes three revision rounds. Send all your notes for a round together, and we'll return an updated edit with every change made.</p></details>
+      <details><summary>How long does delivery take?</summary><p>Each video is delivered in 3 to 4 days. At the start, we plan a schedule that fits your publishing dates.</p></details>
+      <details><summary>Do you use AI?</summary><p>Only to speed up the very first rough cut. From there, our editors edit, refine and finish every video by hand. Your videos are not AI-generated.</p></details>
+      <details><summary>Who is this for?</summary><p>Business-focused YouTubers: course creators, entrepreneurs building their businesses, and founders building products such as apps, who use YouTube to grow.</p></details>
+      <details><summary>Can I add more videos or Shorts?</summary><p>Yes. An extra long-form video is $200 and an extra Short is $30. Both are added to that month's package.</p></details>
+    </div>
+  </div>
+</section>
+
 <section class="dark" id="final-cta">
   <div class="wrap">
     <h2>Every video you post without a strong edit is views you don't get back.</h2>
-    <p class="lede">I only take on a few creators at a time so every edit gets my full attention. Book a free 30-minute call and let's plan your next video.</p>
+    <p class="lede">We take on a limited number of channels so every edit gets our full attention. Book a free 30-minute call and let's plan your next month of videos.</p>
     <div class="hero-ctas">
       <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book your free call</a>
     </div>
@@ -845,7 +894,7 @@
 
 <section class="page dark" data-page="work" id="work" hidden>
   <div class="wrap">
-    <h2 class="one-line work-title">My Work</h2>
+    <h2 class="one-line work-title">Our Work</h2>
 
     <div class="reel-group">
       <div class="reel-slider" id="talking-head-slider">
@@ -908,19 +957,20 @@
     <h2 class="work-title">Offer</h2>
 
     <div class="offer-card price-card tier-growth">
-      <div class="kicker">THE OFFER</div>
-      <h3 class="offer-title">One long-form YouTube edit + 5 Shorts cut from it</h3>
-      <div class="offer-price">$176</div>
+      <div class="kicker">THE MONTHLY PACKAGE</div>
+      <h3 class="offer-title">Four long-form videos and ten Shorts, every month</h3>
+      <div class="offer-price">$1,100<small>/month</small></div>
       <ul>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> An edit built to hold attention from the first second to the last</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 5 Shorts that bring new viewers back to your channel</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A thumbnail made to get the click</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A content strategy call where we plan your next videos and Shorts together</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 rounds of changes until it's right</li>
-        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Delivered in 2 to 4 days</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 4 long-form videos (10–20 minutes each), retention-edited</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 10 Shorts cut from those videos</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> A custom thumbnail for every long-form video</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> 3 revision rounds per video</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Each video delivered in 3 to 4 days</li>
+        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Fast pacing, animated captions, B&#8209;roll, zooms, title cards, sound design and a strong colour grade</li>
       </ul>
-      <p class="offer-close">One video in, a week of content out.</p>
-      <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book a free call</a>
+      <p class="offer-addons"><strong>Need more?</strong> Extra long-form video $200 · Extra Short $30</p>
+      <p class="offer-close">Let's plan your next month of videos.</p>
+      <a class="btn btn-solid" href="https://cal.com/creativeflow/discovery" target="_blank" rel="noopener">Book a call</a>
     </div>
 
     <p class="price-note">Prefer email? <a href="mailto:richmalone11@gmail.com?subject=Let's%20work%20together">richmalone11@gmail.com</a></p>
